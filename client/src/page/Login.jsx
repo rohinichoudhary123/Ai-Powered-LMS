@@ -8,13 +8,16 @@ import { toast } from "react-toastify";
 
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/UserSlice";
 const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("Student");
   const [loading, setLoading] = useState(false);
-
+    let navigate = useNavigate();
+    const  dispatch = useDispatch()
   const handleLogin = async () => {
     setLoading(true);
     try {
@@ -26,14 +29,16 @@ const Login = () => {
       setLoading(false);
       navigate("/");
       toast.success("Login SuccessFully");
+      dispatch(setUserData(res.data))
       console.log(res.data);
     } catch (error) {
       console.log(error.response?.data?.message);
       toast.error(error.response?.data?.message);
       setLoading(false);
+      dispatch(setUserData(null))
     }
   };
-  let navigate = useNavigate();
+
   return (
     <div className="bg-[#dddbdd] w-screen  h-screen flex items-center justify-center">
       <form

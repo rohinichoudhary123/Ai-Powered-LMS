@@ -7,9 +7,13 @@ import { IoEyeOffOutline } from "react-icons/io5";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/UserSlice";
 const SingUp = () => {
   const [show, setShow] = useState(false);
   let navigate = useNavigate();
+
+  const dispatch = useDispatch()
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,12 +30,13 @@ const SingUp = () => {
       setLoading(false);
       navigate("/");
       toast.success("SingUp SuccessFully");
-
+      dispatch(setUserData(res.data))
       console.log(res.data);
     } catch (error) {
       console.log(error.response?.data?.message);
       toast.error(error.response?.data?.message);
       setLoading(false);
+      dispatch(setUserData(null))
     }
   };
   return (

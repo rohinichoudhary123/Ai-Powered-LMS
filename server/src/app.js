@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import authRouter from "./router/auth.Router.js";
 import cookieParser from "cookie-parser";
 import cors from "cors"
+import userRouter from "./router/user.Router.js";
 dotenv.config()
 const app = express();
 
@@ -20,4 +21,5 @@ app.get("/" , (req , res) =>{
 })
 
 app.use("/api/auth" , authRouter)
+app.use("/api/user", userRouter)
 export default app;
