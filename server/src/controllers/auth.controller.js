@@ -14,7 +14,7 @@ export const singUpController = async (req , res) =>{
         }
 
         let existUser = await UserModel.findOne({email})
-
+        
 
         if(existUser){
             return res.status(400).json({
@@ -22,7 +22,7 @@ export const singUpController = async (req , res) =>{
             })
         }
 
-        if(!validator.isEmail){
+        if(!validator.isEmail(email)){
             return res.status(404).json({
                 message:"Enter valid Email"
             })
@@ -56,7 +56,7 @@ export const singUpController = async (req , res) =>{
 
         // res.cookie("token"  , token)
 
-        let token  = await genToken(newUser._id)
+        let token  = await genToken(newUser._id.toString())
 
         res.cookie("token"  , token ,{
             httpOnly:true,
@@ -111,6 +111,10 @@ export const loginController = async (req , res) =>{
         }
 
           let token  = await genToken(existUser._id)
+        
+        // let token =  jwt.sign({id: existUser._id} , config.JWT_SECRET ,{
+        //     expiresIn:"1h"
+        // })
 
         res.cookie("token"  , token ,{
             httpOnly:true,

@@ -29,7 +29,8 @@ const Login = () => {
       setLoading(false);
       navigate("/");
       toast.success("Login SuccessFully");
-      dispatch(setUserData(res.data))
+      // dispatch(setUserData(res.data))
+       dispatch(setUserData(res.data.data))
       console.log(res.data);
     } catch (error) {
       console.log(error.response?.data?.message);

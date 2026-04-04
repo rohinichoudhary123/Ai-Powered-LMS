@@ -4,9 +4,10 @@ import Home from "./page/Home";
 import Login from "./page/Login";
 import SingUp from "./page/SingUp";
 import { ToastContainer } from "react-toastify";
-import getCurrentUser from "./customeHook/getCurrentUser";
+import useCurrentUser from "./customeHook/useCurrentUser";
+
 const App = () => {
-  getCurrentUser()
+   useCurrentUser()
   return (
     <>
       <ToastContainer />

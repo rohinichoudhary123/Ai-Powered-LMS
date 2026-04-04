@@ -1,34 +1,43 @@
-import jwt from  "jsonwebtoken"
-import UserModel from "../model/user.Model.js"
+import jwt from "jsonwebtoken";
+import UserModel from "../model/user.Model.js";
 
-const authMiddleware = async ( req , res ,  next) =>{
-    let token = req.cookies.token
+const authMiddleware = async (req, res, next) => {
+  try {
+    let token = req.cookies.token;
+  console.log( "This is token message",token);
+  
+  if (!token) {
+    return res.status(401).json({
+      message: "Token Not Fround",
+    });
+  }
 
-    if(!token){
-        return res.status(401).json({
-            message:"Token Not Fround"
-        })
-    }
+  let decode = jwt.verify(token, process.env.JWT_SECRET);
+console.log("Decoded:", decode);
+console.log("UserId from token:", decode.userId);
+ 
+  if (!decode) {
+    return res.status(401).json({
+      message: "Unauthorized Token",
+    });
+  }
 
+  let user = await UserModel.findById(decode.userId);
 
-    let decode =  jwt.verify(token , process.env.JWT_SECRET)
+  req.user = user;
 
-    if(!decode){
-        return res.status(400).json({
-            message:"UnUnauthorized Token"
-        })
-    }
+  console.log( "This is User message",user);
+  // console.log(req.user)
+  next();
+  } catch (error) {
+     console.log(error)
 
-    let user = await UserModel.findById(decode.id)
+     return res.status(500).json({
+      success:false,
+      message:"Internal server error",
+      error:error.message
+     })
+  }
+};
 
-    req.user = user
-
-    console.log(req.user);
-    console.log(user)
-    
-
-    next()
-}
-
-
-export default  authMiddleware
+export default authMiddleware;

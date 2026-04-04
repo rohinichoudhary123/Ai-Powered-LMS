@@ -7,6 +7,6 @@ router.post("/register" , singUpController)
 
 router.post("/login" , loginController) 
 
-router.post("/logout" , logoutController)
+router.get("/logout" , logoutController)
 
 export default router
