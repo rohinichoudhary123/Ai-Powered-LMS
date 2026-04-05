@@ -4,7 +4,7 @@ import UserModel from "../model/user.Model.js";
 const authMiddleware = async (req, res, next) => {
   try {
     let token = req.cookies.token;
-  console.log( "This is token message",token);
+  // console.log( "This is token message",token);
   
   if (!token) {
     return res.status(401).json({
@@ -13,8 +13,8 @@ const authMiddleware = async (req, res, next) => {
   }
 
   let decode = jwt.verify(token, process.env.JWT_SECRET);
-console.log("Decoded:", decode);
-console.log("UserId from token:", decode.userId);
+// console.log("Decoded:", decode);
+// console.log("UserId from token:", decode.userId);
  
   if (!decode) {
     return res.status(401).json({
@@ -26,7 +26,7 @@ console.log("UserId from token:", decode.userId);
 
   req.user = user;
 
-  console.log( "This is User message",user);
+  // console.log( "This is User message",user);
   // console.log(req.user)
   next();
   } catch (error) {

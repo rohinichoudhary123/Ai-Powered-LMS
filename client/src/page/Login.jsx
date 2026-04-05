@@ -112,7 +112,7 @@ const Login = () => {
           >
             {loading ? <ClipLoader size={30} color="#fff" /> : "Login"}
           </button>
-          <span className="text-[14px] cursor-pointer text-[#585757] ">
+          <span onClick={()=> navigate("/forget")} className="text-[14px] cursor-pointer text-[#585757] ">
             Forget Your Password ?
           </span>
           <div className="w-[80%] flex items-center gap-2">

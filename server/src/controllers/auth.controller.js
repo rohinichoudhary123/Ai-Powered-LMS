@@ -56,7 +56,7 @@ export const singUpController = async (req , res) =>{
 
         // res.cookie("token"  , token)
 
-        let token  = await genToken(newUser._id.toString())
+        let token  = await genToken(newUser._id)
 
         res.cookie("token"  , token ,{
             httpOnly:true,

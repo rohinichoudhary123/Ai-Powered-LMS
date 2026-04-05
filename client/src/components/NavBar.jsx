@@ -76,7 +76,7 @@ const NavBar = () => {
           )}
           {show && (
             <div className=" absolute top-[110%] right-[15%] flex items-center flex-col justify-center gap-2 text-[16px] rounded-md bg-white px-[15px] py-[10px] border-2 border-black  hover:border-white hover:text-white cursor-pointer hover:bg-black">
-              <span className=" bg-black text-white px-[30px] py-[10px] rounded-2xl hover:bg-gray-600">
+              <span onClick={() => navigate("/profile")} className=" bg-black text-white px-[30px] py-[10px] rounded-2xl hover:bg-gray-600">
                 My Profile
               </span>
               <span className=" bg-black text-white px-[30px] py-[10px] rounded-2xl hover:bg-gray-600">
@@ -145,7 +145,7 @@ const NavBar = () => {
   {/* Educator Options */}
   {userData?.role === "Educator" && (
     <>
-      <div className="w-[200px] h-[40px] flex items-center justify-center border-2 border-white text-white bg-black rounded-[10px] text-[18px] cursor-pointer">
+      <div onClick={() => navigate("/profile")} className="w-[200px] h-[40px] flex items-center justify-center border-2 border-white text-white bg-black rounded-[10px] text-[18px] cursor-pointer">
         My Profile
       </div>
       <div className="w-[200px] h-[40px] flex items-center justify-center border-2 border-white text-white bg-black rounded-[10px] text-[18px] cursor-pointer">
