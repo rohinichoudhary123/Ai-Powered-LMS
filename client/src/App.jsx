@@ -20,7 +20,8 @@ const App = () => {
         <Route path="/singUp" element={ !userData ? <SingUp /> : <Navigate to={"/"}/>}  />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={ userData ?<Profile/> : <Navigate to={"/SingUp"}/>}/>
-        <Route path="/forget"  element = {userData ? <ForgetPass/> : <Navigate to={"/SingUp"}/>}/>
+        {/* <Route path="/forget"  element = {userData ? <ForgetPass/> : <Navigate to={"/SingUp"}/>}/> */}
+        <Route path="/forget" element={<ForgetPass/>}/>
       </Routes>
     </>
   );

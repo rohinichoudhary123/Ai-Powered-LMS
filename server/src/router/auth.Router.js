@@ -1,12 +1,25 @@
 import express from "express";
-import {loginController, logoutController,singUpController } from "../controllers/auth.controller.js";
+import {
+  loginController,
+  logoutController,
+  resetPassword,
+  sendOtp,
+  singUpController,
+  verifyOtp,
+} from "../controllers/auth.controller.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/register" , singUpController)
+router.post("/register", singUpController);
 
-router.post("/login" , loginController) 
+router.post("/login", loginController);
 
-router.get("/logout" , logoutController)
+router.get("/logout", logoutController);
 
-export default router
+router.post("/sendOtp" , sendOtp);
+
+router.post("/verifyOtp", verifyOtp);
+
+router.post("/resetPassword", resetPassword);
+
+export default router;
